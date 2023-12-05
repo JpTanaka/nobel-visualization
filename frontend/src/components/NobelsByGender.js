@@ -15,7 +15,8 @@ const getChartData = (completeData) => {
    * the prize and the name and age of the awarded.
    */
     if (!completeData) return;
-    const scatterPlotData = completeData.map((award, index) => ({
+    console.log(completeData)
+    return completeData.map((award, index) => ({
         id: index,
         group: award.gender,
         name: award.fullName,
@@ -23,7 +24,6 @@ const getChartData = (completeData) => {
         year: parseInt(award.awardYear),
         category: award.category,
     }))
-    return scatterPlotData
 }
 
 export const NobelsByGender = ({ completeData }) => {
@@ -32,11 +32,8 @@ export const NobelsByGender = ({ completeData }) => {
     );
     const chartData = getChartData(completeData)
 
-    const filteredData = useMemo(() => {
-        const scatterPlotData = getChartData(chartData);
-        const filteredData = scatterPlotData.filter(({ category }) => selectedCategories[category]);
-        return filteredData;
-    }, [selectedCategories, chartData]);
+    const filteredData = useMemo(() => chartData.filter(({ category }) => selectedCategories[category]),
+        [selectedCategories, chartData]);
     return (
         <div className="outer-container">
             <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
