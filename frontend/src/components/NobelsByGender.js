@@ -15,7 +15,6 @@ const getChartData = (completeData) => {
    * the prize and the name and age of the awarded.
    */
     if (!completeData) return;
-    console.log(completeData)
     return completeData.map((award, index) => ({
         id: index,
         group: award.gender,
