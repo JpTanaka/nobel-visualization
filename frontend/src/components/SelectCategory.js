@@ -12,7 +12,7 @@ export const SelectCategory = ({ selectedCategories, setSelectedCategories }) =>
         });
     };
     return (
-        <FormControl sx={{ m: 3 }} component="fieldset" variant="standard" >
+        <FormControl sx={{ m: 3 }} component="fieldset" margin="normal" >
             <FormLabel component="legend">Categories</FormLabel>
             <FormGroup row className="form-group">
                 {NOBEL_CATEGORIES.map(category => <FormControlLabel

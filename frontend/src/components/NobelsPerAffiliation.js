@@ -7,7 +7,6 @@ import "./NobelsPerAffiliation.css"
 
 import { SelectCategory } from "./SelectCategory";
 
-// TODO: try to optimize when the selectedCategories change.
 const getChartData = (completeData) => {
     /**
    * This function format the data from complete.csv.
@@ -39,31 +38,34 @@ export const NobelsPerAffiliation = ({ completeData }) => {
         Object.fromEntries(NOBEL_CATEGORIES.map(category => [category, true]))
     );
     const [removeNoAffiliation, setRemoveNoAffiliation] = useState(false)
-
     const chartData = getChartData(completeData);
-
     const filteredData = useMemo(() => {
         const filteredDataWithAffiliation = chartData.map(data => {
-            const filtered = { name: data.name, awardeds: data.awardeds }
-            let totalAwards = 0;
+            const filtered = {
+                name: data.name,
+                awardeds: data.awardeds,
+                totalAwards: 0,
+            };
+
             Object.entries(selectedCategories).forEach(([category, isSelected]) => {
-                if (!isSelected) return;
-                filtered[category] = data[category] || 0;
-                filtered[category + "Awardeds"] = data[category + "Awardeds"] || [];
-                totalAwards += data[category] || 0
-            })
-            filtered.totalAwards = totalAwards
+                if (isSelected) {
+                    filtered[category] = data[category] || 0;
+                    filtered[category + "Awardeds"] = data[category + "Awardeds"] || [];
+                    filtered.totalAwards += filtered[category];
+                }
+            });
+
             return filtered;
-        }).sort((a, b) => - a.totalAwards + b.totalAwards).slice(0, 11)
-        if (removeNoAffiliation) {
-            return filteredDataWithAffiliation.filter(({ name }) => name !== "No Affiliation")
-        }
-        return filteredDataWithAffiliation.slice(0, 10)
+        }).sort((a, b) => b.totalAwards - a.totalAwards).slice(0, 11);
+
+        return removeNoAffiliation
+            ? filteredDataWithAffiliation.filter(({ name }) => name !== "No Affiliation")
+            : filteredDataWithAffiliation.slice(0, 10);
     }, [selectedCategories, chartData, removeNoAffiliation]);
     return (
         <div className="outer-container">
             <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
-            <div className="line-chart-container">
+            <div className="chart-container">
                 <ResponsiveBar
                     data={filteredData}
                     keys={NOBEL_CATEGORIES}
@@ -177,7 +179,7 @@ export const NobelsPerAffiliation = ({ completeData }) => {
                     ariaLabel="Nobel Affiliation bar chart"
                 />
                 <div className="button-container" >
-                    <Button variant="outlined" onClick={() => setRemoveNoAffiliation(value => !value)} size="small" className="toggle-button">Toggle No Affiliation</Button>
+                    <Button variant="outlined" onClick={() => setRemoveNoAffiliation(value => !value)} size="small" className="toggle-button">{removeNoAffiliation ? "Add" : "Remove"} No Affiliation</Button>
 
                 </div>
             </div>

@@ -1,0 +1,11 @@
+.bottom-navigation-paper {
+    background-color: #FFEFE8;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bottom-navigation {
+    background-color: rgb(255, 239, 239) !important;
+}

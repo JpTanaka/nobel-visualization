@@ -1,18 +1,12 @@
 import { NOBEL_CATEGORIES } from "../App";
-import { ResponsiveSwarmPlot, ResponsiveSwarmPlotCanvas } from '@nivo/swarmplot'
-import { useCallback, useMemo, useState } from "react";
-import moment from "moment";
-
+import { ResponsiveSwarmPlot } from '@nivo/swarmplot'
+import { useMemo, useState } from "react";
 import "./NobelsByGender.css"
 
 import { SelectCategory } from "./SelectCategory";
+import { calculateAge } from "../utils";
 
-const calculateAge = (birthDate, awardDate, awardYear) => {
-    return awardDate.length ? moment(awardDate).diff(moment(birthDate), "years") : parseInt(awardYear) - parseInt(birthDate.slice(0, 4));
-}
-
-// TODO: try to optimize when the selectedCategories change.
-const getScatterPlotData = (completeData) => {
+const getChartData = (completeData) => {
     /**
    * This function format the data from complete.csv.
    *
@@ -36,21 +30,17 @@ export const NobelsByGender = ({ completeData }) => {
     const [selectedCategories, setSelectedCategories] = useState(
         Object.fromEntries(NOBEL_CATEGORIES.map(category => [category, true]))
     );
-
-    const getScatterPlotDataMemoized = useCallback(
-        data => getScatterPlotData(data),
-        []
-    );
+    const chartData = getChartData(completeData)
 
     const filteredData = useMemo(() => {
-        const scatterPlotData = getScatterPlotDataMemoized(completeData);
+        const scatterPlotData = getChartData(chartData);
         const filteredData = scatterPlotData.filter(({ category }) => selectedCategories[category]);
         return filteredData;
-    }, [selectedCategories, completeData, getScatterPlotDataMemoized]);
+    }, [selectedCategories, chartData]);
     return (
         <div className="outer-container">
             <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
-            <div className="line-chart-container">
+            <div className="chart-container">
                 <ResponsiveSwarmPlot
                     data={filteredData}
                     groups={['male', 'female']}
@@ -95,7 +85,6 @@ export const NobelsByGender = ({ completeData }) => {
                         legendPosition: 'middle',
                         legendOffset: -76
                     }}
-                // motionConfig="default"
                 />
             </div>
         </div>

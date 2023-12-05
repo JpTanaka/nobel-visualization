@@ -1,15 +1,12 @@
 import { NOBEL_CATEGORIES } from "../App";
 import { ResponsiveScatterPlot } from '@nivo/scatterplot'
-import { ResponsiveScatterPlotCanvas } from '@nivo/scatterplot'
 import { useMemo, useState } from "react";
-import moment from "moment";
 import "./NobelsByAge.css"
 
 import { SelectCategory } from "./SelectCategory"
+import { calculateAge } from "../utils";
 
-const calculateAge = (birthDate, awardDate, awardYear) => {
-    return awardDate.length ? moment(awardDate).diff(moment(birthDate), "years") : parseInt(awardYear) - parseInt(birthDate.slice(0, 4));
-}
+
 
 const getChartData = (completeData) => {
     /**
@@ -44,9 +41,9 @@ export const NobelsByAge = ({ completeData }) => {
     return (
         <div className="outer-container">
             <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
-            <div className="line-chart-container">
+            <div className="chart-container">
                 {/* Slow update, see: https://github.com/plouc/nivo/issues/1740 */}
-                <ResponsiveScatterPlotCanvas
+                <ResponsiveScatterPlot
                     data={filteredData}
                     margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
                     xScale={{ type: 'linear', min: "auto", max: 'auto' }}

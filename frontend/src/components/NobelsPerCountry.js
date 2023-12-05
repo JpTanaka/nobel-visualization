@@ -1,33 +1,16 @@
 import { NOBEL_CATEGORIES } from "../App";
-import { ResponsiveLine } from "@nivo/line"
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useMemo, useState } from "react";
 import "./NobelsPerCountry.css";
 import { SelectCategory } from "./SelectCategory";
 import { ResponsiveBar } from "@nivo/bar";
 
-const getNobelsByCountryPerCategory = (completeData) => {
-    const nobelsByCountryPerCategory = {};
-
-    for (const element of completeData) {
-        const country = element.birth_country;
-        if (!country.length) continue;
-        const category = element.category;
-        nobelsByCountryPerCategory[country] = nobelsByCountryPerCategory[element.birth_country] || {};
-        nobelsByCountryPerCategory[country][category] = (nobelsByCountryPerCategory[element.birth_country][category] || 0) + 1;
-    }
-    return nobelsByCountryPerCategory
-}
-
-const getChartData = (completeData, category) => {
+const getChartData = (completeData) => {
     /**
    * This function format the data from complete.csv.
    *
    * @param  completeData - data from complete.csv.
-   * @param {string} category - category that will be shown
-   * @returns array of objects having the name of the category, the
-   * color of the line on the chart and the distribution per country of nobels.
+   * @returns array of objects having the name of the category and 
+   * the distribution per country of nobels.
    */
     const dataByCountry = Object.groupBy(completeData, ({ ind_or_org, birth_country, org_founded_country }) => ind_or_org === "Individual" ? birth_country : org_founded_country);
     return Object.entries(dataByCountry).map(([country, awards], index) => {
@@ -51,7 +34,6 @@ export const NobelsPerCountry = ({ completeData }) => {
         Object.fromEntries(NOBEL_CATEGORIES.map(category => [category, true]))
     );
     const chartData = getChartData(completeData, selectedCategories)
-    // Use slider?
     const numberOfCountries = 10;
     const filteredData = useMemo(() => {
         return chartData.map(data => {
@@ -67,11 +49,10 @@ export const NobelsPerCountry = ({ completeData }) => {
             return filtered;
         }).sort((a, b) => - a.totalAwards + b.totalAwards).slice(0, numberOfCountries)
     }, [selectedCategories, chartData]);
-    console.log(chartData, filteredData)
     return (
         <div className="outer-container">
             <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
-            <div className="line-chart-container">
+            <div className="chart-container">
                 <ResponsiveBar
                     data={filteredData}
                     keys={NOBEL_CATEGORIES}

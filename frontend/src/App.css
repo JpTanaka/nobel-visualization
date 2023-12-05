@@ -6,3 +6,25 @@
   justify-content: center;
   align-items: center;
 }
+
+.separator {
+  width: 80%;
+  border-top: 1px solid #000;
+  margin: 5px;
+}
+
+/* workaround so that loading have the same height
+  as the charts */
+.loading-chart-container {
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+  margin: 10px;
+}
