@@ -41,6 +41,8 @@ export const NobelsByGender = ({ completeData }) => {
                     data={filteredData}
                     groups={['male', 'female']}
                     identity="id"
+                    height={500}
+                    width={800}
                     value="year"
                     valueScale={{ type: 'linear', min: 1898, max: 2025, reverse: false }}
                     forceStrength={2}

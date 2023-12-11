@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://jptanaka.github.io/react-gh-pages",
+  "homepage": "https://jptanaka.github.io/nobel-visualization",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

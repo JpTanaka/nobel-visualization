@@ -1,6 +1,7 @@
 import { NOBEL_CATEGORIES } from "../App";
 import { useMemo, useState } from "react";
 import "./NobelsPerCountry.css";
+import "../App.css"
 import { SelectCategory } from "./SelectCategory";
 import { ResponsiveBar } from "@nivo/bar";
 
@@ -57,6 +58,8 @@ export const NobelsPerCountry = ({ completeData }) => {
                     data={filteredData}
                     keys={NOBEL_CATEGORIES}
                     indexBy="name"
+                    height={500}
+                    width={800}
                     margin={{ top: 50, right: 130, bottom: 100, left: 60 }}
                     groupMode="grouped"
                     padding={0.3}

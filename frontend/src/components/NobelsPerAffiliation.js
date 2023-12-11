@@ -160,6 +160,8 @@ export const NobelsPerAffiliation = ({ completeData }) => {
                             ]
                         }
                     ]}
+                    height={500}
+                    width={800}
                     tooltip={(
                         node
                     ) => <div style={{

@@ -2,15 +2,24 @@
   padding: 3rem;
   display: flex;
   flex-direction: column;
-  height: 80vh;
   justify-content: center;
   align-items: center;
 }
 
 .separator {
-  width: 80%;
   border-top: 1px solid #000;
   margin: 5px;
+}
+
+/* 
+
+.displayed-chart-container {
+  height: 500px;
+  width: 1000px;
+} */
+
+.main-content {
+  padding-bottom: 60px;
 }
 
 /* workaround so that loading have the same height
@@ -20,6 +29,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.chart-container {
+  height: 500px;
+  width: 800px;
 }
 
 .title {

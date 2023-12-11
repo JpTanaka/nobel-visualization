@@ -45,6 +45,8 @@ export const NobelsByAge = ({ completeData }) => {
                 {/* Slow update, see: https://github.com/plouc/nivo/issues/1740 */}
                 <ResponsiveScatterPlot
                     data={filteredData}
+                    height={500}
+                    width={800}
                     margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
                     xScale={{ type: 'linear', min: "auto", max: 'auto' }}
                     yScale={{ type: 'linear', min: "auto", max: 'auto' }}

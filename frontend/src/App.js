@@ -39,17 +39,19 @@ const App = () => {
   }, [])
   return (
     <div className="app-container">
-      <div className="title-container">
-        <p className='title'>
-          Nobel Visualization
-        </p>
-      </div>
-      <div className='separator' />
-      {complete ? displayedChart[chartOption] :
-        <div className='loading-chart-container'>
-          <CircularProgress />
+      <div className='main-content'>
+        <div className="title-container">
+          <p className='title'>
+            Nobel Visualization
+          </p>
         </div>
-      }
+        <div className='separator' />
+        {complete ? displayedChart[chartOption] :
+          <div className='loading-chart-container'>
+            <CircularProgress />
+          </div>
+        }
+      </div>
       <SelectChart chartOption={chartOption} setChartOption={setChartOption} />
     </div >
   );
