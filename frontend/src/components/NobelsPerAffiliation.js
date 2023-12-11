@@ -180,10 +180,11 @@ export const NobelsPerAffiliation = ({ completeData }) => {
                         </div>}
                     ariaLabel="Nobel Affiliation bar chart"
                 />
-                <div className="button-container" >
-                    <Button variant="outlined" onClick={() => setRemoveNoAffiliation(value => !value)} size="small" className="toggle-button">{removeNoAffiliation ? "Add" : "Remove"} No Affiliation</Button>
-
-                </div>
+            </div>
+            <div className="button-container" >
+                <Button variant="outlined" onClick={() => setRemoveNoAffiliation(value => !value)} size="small" className="toggle-button">
+                    {removeNoAffiliation ? "Add" : "Remove"} No Affiliation
+                </Button>
             </div>
         </div>
     );

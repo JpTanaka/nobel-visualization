@@ -11,15 +11,8 @@
   margin: 5px;
 }
 
-/* 
-
-.displayed-chart-container {
-  height: 500px;
-  width: 1000px;
-} */
-
 .main-content {
-  padding-bottom: 60px;
+  padding-bottom: 32px;
 }
 
 /* workaround so that loading have the same height
