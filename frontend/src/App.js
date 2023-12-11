@@ -15,7 +15,7 @@ import { SelectChart } from './components/SelectChart';
 
 export const NOBEL_CATEGORIES = ["Peace", "Literature", "Chemistry", "Economic Sciences", "Physics", "Physiology or Medicine"];
 export const chartOptions = [
-  { label: "Flag", value: "country", icon: <FlagIcon /> },
+  { label: "Country", value: "country", icon: <FlagIcon /> },
   { label: "Age", value: "age", icon: <DateRangeIcon /> },
   { label: "Affiliation", value: "affiliation", icon: <SchoolIcon /> },
   { label: "Gender", value: "gender", icon: <WcIcon /> },
