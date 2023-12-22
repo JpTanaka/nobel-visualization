@@ -7,6 +7,7 @@ import { SelectCategory } from "./SelectCategory";
 import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveChoropleth } from '@nivo/geo'
 import { Select, MenuItem } from "@mui/material";
+import { max } from "d3";
 
 const countryCodes = {
     "USA": "USA", // United States of America
@@ -143,9 +144,6 @@ export const NobelsPerCountry = ({ completeData }) => {
         }).sort((a, b) => - a.totalAwards + b.totalAwards).slice(0, numberOfCountries)
     }, [selectedCategories, chartData]);
 
-    console.log(filteredData)
-    console.log(countries.features)
-
     const graphs = {
         choropleth: <ResponsiveChoropleth
             data={filteredData}
@@ -153,11 +151,11 @@ export const NobelsPerCountry = ({ completeData }) => {
             value="totalAwards"
             height={500}
             width={800}
-            domain={[0, 100]}
+            domain={[0, max(filteredData, d => d.totalAwards)]}
             features={countries.features}
             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-            colors="reds"
-            unknownColor="#666666"
+            colors="YlGnBu"
+            unknownColor="#feffd9"
             valueFormat=".2s"
             projectionType="mercator"
             projectionTranslation={[0.5, 0.5]}
