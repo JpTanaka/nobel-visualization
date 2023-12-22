@@ -65,6 +65,18 @@ export const NobelsPerAffiliation = ({ completeData }) => {
     return (
         <div className="outer-container">
             <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
+            <div className="switch-container" >
+                <Switch
+                checked={removeNoAffiliation}
+                onChange={() => setRemoveNoAffiliation(value => !value)}
+                color="primary"
+                size="small"
+                className="toggle-switch"
+                />
+                <span className="toggle-label">
+                {removeNoAffiliation ? "Show" : "Hide"} no affiliation
+                </span>
+            </div>
             <div className="chart-container">
                 <ResponsiveBar
                     data={filteredData}
@@ -180,18 +192,6 @@ export const NobelsPerAffiliation = ({ completeData }) => {
                         </div>}
                     ariaLabel="Nobel Affiliation bar chart"
                 />
-            </div>
-            <div className="switch-container" >
-                <Switch
-                checked={removeNoAffiliation}
-                onChange={() => setRemoveNoAffiliation(value => !value)}
-                color="primary"
-                size="small"
-                className="toggle-switch"
-                />
-                <span className="toggle-label">
-                {removeNoAffiliation ? "Show" : "Hide"} no affiliation
-                </span>
             </div>
         </div>
     );
