@@ -250,14 +250,19 @@ export const NobelsByGender = ({ completeData }) => {
     }
     return (
         <div className="outer-container">
-            <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
+            {graphType !== "bar" && <SelectCategory selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />}
             <div className="chart-container">
                 {graphs[graphType]}
             </div>
             <Select
                 value={graphType}
                 label="Graph Type"
-                onChange={(event) => setGraphType(event.target.value)}
+                onChange={(event) => {
+                    setGraphType(event.target.value)
+                    if (event.target.value === "bar") {
+                        setSelectedCategories(Object.fromEntries(NOBEL_CATEGORIES.map(category => [category, true])))
+                    }
+                }}
                 className="graph-selector"
             >
                 <MenuItem value={"waffle"}>Gender Ratio</MenuItem>
