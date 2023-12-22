@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.19",
     "@nivo/bar": "^0.84.0",
+    "@nivo/geo": "^0.84.0",
     "@nivo/line": "^0.84.0",
     "@nivo/scatterplot": "^0.84.0",
     "@nivo/sunburst": "^0.84.0",

@@ -11,3 +11,9 @@
 .select-category {
     height: 20%;
 }
+
+.graph-selector {
+    font-size: small;
+    height: 30px;
+    width: 20%;
+}

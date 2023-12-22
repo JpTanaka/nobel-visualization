@@ -27,15 +27,15 @@ const App = () => {
   const [awards, setAwards] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [laureates, setLaureates] = useState(null);
-  const [chartOption, setChartOption] = useState('country');
+  const [chartOption, setChartOption] = useState(chartOptions[0].value);
   const displayedChart = {
     country: <NobelsPerCountry completeData={complete} />, age: <NobelsByAge completeData={complete} />, gender: <NobelsByGender completeData={complete} />
     , affiliation: <NobelsPerAffiliation completeData={complete} />
   }
   useEffect(() => {
-    d3.csv("complete.csv").then(data => setComplete(data))
-    d3.json("json_award.json").then(awards => setAwards(awards))
-    d3.json("json_laureates.json").then(laureates => setLaureates(laureates))
+    d3.csv("nobel-visualization/complete.csv").then(data => setComplete(data))
+    d3.json("nobel-visualization/json_award.json").then(awards => setAwards(awards))
+    d3.json("nobel-visualization/json_laureates.json").then(laureates => setLaureates(laureates))
   }, [])
   return (
     <div className="app-container">
