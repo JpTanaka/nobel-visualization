@@ -130,7 +130,7 @@ export const NobelsPerCountry = ({ completeData }) => {
     const chartData = getChartData(completeData, selectedCategories)
     const numberOfCountries = 10;
     const filteredData = useMemo(() => {
-        return chartData.map(data => {
+        const filtered = chartData.map(data => {
             const filtered = { name: data.name, awardeds: data.awardeds, id: data.id }
             let totalAwards = 0;
             Object.entries(selectedCategories).forEach(([category, isSelected]) => {
@@ -141,8 +141,10 @@ export const NobelsPerCountry = ({ completeData }) => {
             })
             filtered.totalAwards = totalAwards
             return filtered;
-        }).sort((a, b) => - a.totalAwards + b.totalAwards).slice(0, numberOfCountries)
-    }, [selectedCategories, chartData]);
+        })
+        if (graphType !== "bar") return filtered;
+        return filtered.sort((a, b) => - a.totalAwards + b.totalAwards).slice(0, numberOfCountries)
+    }, [selectedCategories, chartData, graphType]);
 
     const graphs = {
         choropleth: <ResponsiveChoropleth
