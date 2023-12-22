@@ -1,7 +1,7 @@
 import { NOBEL_CATEGORIES } from "../App";
 import { ResponsiveBar } from '@nivo/bar'
 import { useMemo, useState } from "react";
-import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
 
 import "./NobelsPerAffiliation.css"
 
@@ -37,7 +37,7 @@ export const NobelsPerAffiliation = ({ completeData }) => {
     const [selectedCategories, setSelectedCategories] = useState(
         Object.fromEntries(NOBEL_CATEGORIES.map(category => [category, true]))
     );
-    const [removeNoAffiliation, setRemoveNoAffiliation] = useState(false)
+    const [removeNoAffiliation, setRemoveNoAffiliation] = useState(true)
     const chartData = getChartData(completeData);
     const filteredData = useMemo(() => {
         const filteredDataWithAffiliation = chartData.map(data => {
@@ -181,10 +181,17 @@ export const NobelsPerAffiliation = ({ completeData }) => {
                     ariaLabel="Nobel Affiliation bar chart"
                 />
             </div>
-            <div className="button-container" >
-                <Button variant="outlined" onClick={() => setRemoveNoAffiliation(value => !value)} size="small" className="toggle-button">
-                    {removeNoAffiliation ? "Add" : "Remove"} No Affiliation
-                </Button>
+            <div className="switch-container" >
+                <Switch
+                checked={removeNoAffiliation}
+                onChange={() => setRemoveNoAffiliation(value => !value)}
+                color="primary"
+                size="small"
+                className="toggle-switch"
+                />
+                <span className="toggle-label">
+                {removeNoAffiliation ? "Show" : "Hide"} no affiliation
+                </span>
             </div>
         </div>
     );

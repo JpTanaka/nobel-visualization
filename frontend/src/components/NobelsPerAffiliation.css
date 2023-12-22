@@ -7,7 +7,7 @@
 }
 
 
-.button-container {
+.switch-container {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -15,4 +15,9 @@
 
 .toggle-button {
     width: 8.5rem;
+}
+
+.toggle-label {
+    font-size: .9rem;
+    margin-right: 2rem;
 }
