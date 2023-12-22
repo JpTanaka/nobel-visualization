@@ -220,7 +220,7 @@ export const NobelsPerCountry = ({ completeData }) => {
                     anchor: 'right',
                     direction: 'column',
                     justify: false,
-                    translateX: 30,
+                    translateX: 20,
                     translateY: 0,
                     itemWidth: 100,
                     itemHeight: 20,
