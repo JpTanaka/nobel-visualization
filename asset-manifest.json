@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/nobel-visualization/static/css/main.267afcdd.css",
-    "main.js": "/nobel-visualization/static/js/main.028ef8aa.js",
+    "main.css": "/nobel-visualization/static/css/main.b98438fd.css",
+    "main.js": "/nobel-visualization/static/js/main.ee830688.js",
     "static/js/787.9e9f4ffd.chunk.js": "/nobel-visualization/static/js/787.9e9f4ffd.chunk.js",
     "index.html": "/nobel-visualization/index.html",
-    "main.267afcdd.css.map": "/nobel-visualization/static/css/main.267afcdd.css.map",
-    "main.028ef8aa.js.map": "/nobel-visualization/static/js/main.028ef8aa.js.map",
+    "main.b98438fd.css.map": "/nobel-visualization/static/css/main.b98438fd.css.map",
+    "main.ee830688.js.map": "/nobel-visualization/static/js/main.ee830688.js.map",
     "787.9e9f4ffd.chunk.js.map": "/nobel-visualization/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.267afcdd.css",
-    "static/js/main.028ef8aa.js"
+    "static/css/main.b98438fd.css",
+    "static/js/main.ee830688.js"
   ]
 }
